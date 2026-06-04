@@ -2,9 +2,19 @@ import streamlit as st
 import anthropic
 import os
 
-st.set_page_config(page_title="✈️ Flugpreis-Agent", page_icon="✈️", layout="wide")
-st.title("✈️ Flugpreis-Agent")
-st.caption("Sucht Google Flights, Skyscanner, Kayak, Kiwi & Airlines")
+st.set_page_config(page_title="Safari & Adventure Tour — Flugsuche", page_icon="🦁", layout="wide")
+
+col_logo, col_title = st.columns([1, 4])
+with col_logo:
+    if os.path.exists("logo.png"):
+        st.image("logo.png", width=150)
+    elif os.path.exists(os.path.expanduser("~/flug-agent/logo.png")):
+        st.image(os.path.expanduser("~/flug-agent/logo.png"), width=150)
+    else:
+        st.markdown("## 🦁")
+with col_title:
+    st.title("✈️ Flugpreis-Agent")
+    st.caption("Safari & Adventure Tour · Sucht Google Flights, Skyscanner, Kayak, Kiwi & Airlines")
 
 # API Key
 def get_key():
