@@ -1,0 +1,10 @@
+{
+  "name": "linkedin-agent-de",
+  "description": "Elf Claude-Skills für LinkedIn auf Deutsch: Posts mit 21 Hook-Formeln, Kommentare, Antworten, Profil-Bewertung, Wochenplan, DMs, Postfach, Karussells, Wiederverwertung, Rückblick und ein deutscher Humanizer, der KI-Floskeln und englische Typografie entfernt und den Entwurf mit fünf Prüfungen bewertet.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jörg Noack"
+  },
+  "license": "MIT",
+  "keywords": ["linkedin", "deutsch", "content", "schreiben", "humanizer", "social", "marketing"]
+}

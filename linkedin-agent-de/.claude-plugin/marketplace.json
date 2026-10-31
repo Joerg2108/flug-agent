@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "linkedin-agent-de",
+  "description": "Das LinkedIn-Skill-Paket für Claude, auf Deutsch",
+  "owner": {
+    "name": "Jörg Noack"
+  },
+  "plugins": [
+    {
+      "name": "linkedin-agent-de",
+      "description": "Elf Claude-Skills für LinkedIn auf Deutsch, inklusive Humanizer für deutsche Texte.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

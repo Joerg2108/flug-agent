@@ -1,0 +1,19 @@
+{
+  "version": "1.0-de",
+  "total": 100,
+  "note": "Zwölf Punkte. Ehrlich bewerten - eine großzügige Bewertung hilft niemandem. Die meisten Profile landen beim ersten Durchgang in den 30ern und 40ern.",
+  "items": [
+    {"id": "headline", "label": "Headline", "points": 12, "full_marks": "Sagt, wem du hilfst und was sich für sie ändert, enthält einen Beleg und ist nicht die Jobbezeichnung. Nutzt die 220 Zeichen, nicht 60."},
+    {"id": "about_open", "label": "Info, erste 2 Zeilen", "points": 10, "full_marks": "Die ersten zwei Zeilen - alles vor '... mehr' - nennen das Problem des Lesers. Kein 'leidenschaftlich', keine Bio in der dritten Person, kein Einstieg mit dem eigenen Namen."},
+    {"id": "about_body", "label": "Info, Rest", "points": 10, "full_marks": "An eine Person geschrieben, in Du- oder Sie-Form: ihr Problem, was du tust, eine Zahl als Beleg, was als Nächstes zu tun ist. Unter 1.400 Zeichen."},
+    {"id": "featured", "label": "Im Fokus", "points": 8, "full_marks": "Drei Einträge: bester Post, ein Beleg (Zertifikat, Referenz, Fallbeispiel) und der Weg, dich zu kontaktieren. Nichts leer, nichts veraltet."},
+    {"id": "banner", "label": "Titelbild", "points": 6, "full_marks": "Eine Zeile Positionierung und ein Kontaktweg. Nicht der Standard-Verlauf, keine Stock-Skyline."},
+    {"id": "photo", "label": "Profilfoto", "points": 6, "full_marks": "Gesicht füllt etwa 60 % des Bildes, Augen sichtbar, nicht älter als zwei Jahre, ruhiger Hintergrund."},
+    {"id": "current_role", "label": "Aktuelle Position", "points": 10, "full_marks": "Eine Zeile zum Umfang, dann zwei bis drei Ergebnis-Punkte mit Zahlen. Aufgaben sind keine Ergebnisse."},
+    {"id": "experience_depth", "label": "Berufserfahrung", "points": 8, "full_marks": "Die letzten zwei Positionen ausführlich, alles älter als zehn Jahre auf je eine Zeile verdichtet."},
+    {"id": "skills", "label": "Kenntnisse", "points": 6, "full_marks": "Die Top 3 sind die drei, für die du gebucht oder eingestellt werden willst, und sind bestätigt. Relevante Nachweise (z. B. § 34a, Fachkraft, Ersthelfer, Brandschutzhelfer) unter 'Bescheinigungen und Zertifikate'."},
+    {"id": "recommendations", "label": "Empfehlungen", "points": 8, "full_marks": "Mindestens drei aus den letzten zwei Jahren, jede mit einem konkreten Ergebnis statt Charakterlob."},
+    {"id": "activity", "label": "Aktivität", "points": 10, "full_marks": "In den letzten sieben Tagen gepostet oder kommentiert. Ein leerer Aktivitäts-Feed wirkt wie ein verlassenes Profil."},
+    {"id": "contact", "label": "Kontakt", "points": 6, "full_marks": "Eigene Profil-URL, eine funktionierende E-Mail oder ein Buchungslink in den Kontaktinfos, gleicher Name wie auf anderen Plattformen."}
+  ]
+}
