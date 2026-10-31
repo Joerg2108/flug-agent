@@ -282,8 +282,15 @@ def main():
     if args.input == "-":
         raw = sys.stdin.read()
     else:
-        with open(args.input, encoding="utf-8") as fh:
-            raw = fh.read()
+        try:
+            with open(args.input, encoding="utf-8") as fh:
+                raw = fh.read()
+        except FileNotFoundError:
+            sys.exit(f"Fehler: Datei nicht gefunden: {args.input}")
+        except UnicodeDecodeError:
+            sys.exit(f"Fehler: {args.input} ist nicht UTF-8. Als UTF-8 speichern und nochmal versuchen.")
+    if not raw.strip():
+        sys.exit("Fehler: Eingabe ist leer.")
     lex = load_lexicon(args.lexicon)
     clean, report = humanize(raw, lex, args.striche)
 

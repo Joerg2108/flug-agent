@@ -27,6 +27,8 @@ Aufruf
   pbpaste | python3 detect.py -
   python3 detect.py entwurf.txt --json
   python3 detect.py vorher.txt nachher.txt      # zwei Fassungen vergleichen
+
+Exit-Code: 0 = OK, 1 = PRÜFEN/AUFFÄLLIG, 2 = Eingabe zu kurz oder Fehler.
 """
 
 import argparse
@@ -51,9 +53,17 @@ UMGANGSSPRACHE = re.compile(
 PRONOMEN = re.compile(
     r"\b(?:ich|mich|mir|mein\w*|wir|uns|unser\w*|du|dich|dir|dein\w*|ihr|euch|euer|eure\w*)\b",
     re.IGNORECASE)
+# Höfliche Anrede: case-sensitiv, damit "sie" (Plural) nicht mitzählt.
+SIE_FORM = re.compile(r"\b(?:Sie|Ihnen|Ihr|Ihre|Ihren|Ihrem|Ihrer|Ihres)\b")
 KONKRET = [
     re.compile(r"\d+(?:[.,]\d+)*"),                       # Zahlen: 3, 1.200, 15,5
-    re.compile(r"[€$%]|\b(?:Euro|Prozent|Uhr)\b"),          # Einheiten
+    re.compile(r"[€$%]|\b(?:Euro|Prozent|Uhr|Minuten?|Stunden?|Std|Tagen?|Wochen?|"
+               r"Monaten?|Monate|Jahren?|Jahre|Meter|km|Kilometer|qm|m²)\b"),  # Einheiten
+    re.compile(r"\b(?:Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|"
+               r"Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|"
+               r"November|Dezember)s?\b"),                 # Zeitanker
+    re.compile(r"\b(?:zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|"
+               r"zwanzig|dreißig|hundert|tausend)(?:mal|fach)?\b", re.IGNORECASE),  # Zahlwörter
     re.compile(r"\b[A-ZÄÖÜ]{2,6}s?\b"),                    # Abkürzungen: IHK, DGUV, BGB
     re.compile(r"§+\s?\d"),                                # Paragrafen
     re.compile(r"„[^“\n]{3,}“"),                           # wörtliche Rede
@@ -132,20 +142,25 @@ def check_stimme(text, lex):
         return 50.0, "zu kurz zum Bewerten"
     per100 = 100 / len(w)
     locker = len(UMGANGSSPRACHE.findall(text)) * per100
-    person = len(PRONOMEN.findall(text)) * per100
+    sie = len(SIE_FORM.findall(text))
+    person = (len(PRONOMEN.findall(text)) + sie) * per100
+    # Ein Sie-Text darf sachlicher klingen: Umgangssprache zählt dann weniger,
+    # direkte Ansprache mehr.
+    formell = sie >= 2
     structs = [s for s in scan_structures(text, lex) if s["id"] != "gleichfoermig"]
     tells = sum(s["count"] for s in structs)
     names = [s["id"] for s in structs]
     bullets = [len(b.split()) for b in re.findall(r"(?m)^\s*(?:[-*•✅👉]|\d+[.)])\s+(.+)$", text)]
     uniform = len(bullets) >= 3 and statistics.pstdev(bullets) < 1.6
-    score = (scale(locker, human=2.5, machine=0.2) * 0.35
-             + scale(person, human=7.0, machine=1.0) * 0.35
+    w_locker, w_person = (0.10, 0.60) if formell else (0.35, 0.35)
+    score = (scale(locker, human=2.5, machine=0.2) * w_locker
+             + scale(person, human=7.0, machine=1.0) * w_person
              + clamp(100 - tells * 22) * 0.30)
     if uniform:
         score -= 12
         names.append("gleiche-aufzaehlungen")
     detail = (f"{locker:.1f} Umgangssprache, {person:.1f} Pronomen (ich/du/wir) "
-              f"pro 100 Wörter, {tells} Strukturmuster")
+              f"pro 100 Wörter, {tells} Strukturmuster" + (", Sie-Form erkannt" if formell else ""))
     if names:
         detail += " [" + ", ".join(names[:4]) + "]"
     return clamp(score), detail
@@ -204,12 +219,22 @@ def main():
     def read(p):
         if p == "-":
             return sys.stdin.read()
-        with open(p, encoding="utf-8") as fh:
-            return fh.read()
+        try:
+            with open(p, encoding="utf-8") as fh:
+                return fh.read()
+        except FileNotFoundError:
+            sys.exit(f"Fehler: Datei nicht gefunden: {p}")
+        except UnicodeDecodeError:
+            sys.exit(f"Fehler: {p} ist nicht UTF-8. Als UTF-8 speichern und nochmal versuchen.")
 
     targets = [(args.input, read(args.input))]
     if args.compare:
         targets.append((args.compare, read(args.compare)))
+    for name, text in targets:
+        if len(words(text)) < 10:
+            print(f"Zu kurz zum Bewerten ({len(words(text))} Wörter in {name}). "
+                  "Mindestens ein paar Sätze nötig.", file=sys.stderr)
+            sys.exit(2)
 
     payload, rendered = [], []
     for name, text in targets:

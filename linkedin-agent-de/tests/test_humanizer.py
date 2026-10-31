@@ -106,6 +106,40 @@ class Erkennung(unittest.TestCase):
         _, nachher, _ = detect.run(clean(roh), LEX)
         self.assertGreater(nachher, vorher)
 
+    def test_typischer_ki_post_faellt_auf(self):
+        results, _, verdict = detect.run(beispiel("ki-typisch.txt"), LEX)
+        self.assertEqual(verdict, "AUFFÄLLIG")
+        self.assertIn("kein-x-sondern", results["STIMME"][1])
+        self.assertIn("engagement-koeder", results["STIMME"][1])
+
+    def test_sie_form_wird_nicht_bestraft(self):
+        results, overall, _ = detect.run(beispiel("sie-form.txt"), LEX)
+        self.assertGreaterEqual(results["STIMME"][0], 80)
+        self.assertIn("Sie-Form", results["STIMME"][1])
+        self.assertGreater(overall, 65)
+
+    def test_koeder_mit_emoji_am_ende(self):
+        flags = humanize.scan_structures("Wie seht ihr das? 👇", LEX)
+        self.assertTrue(any(f["id"] == "engagement-koeder" for f in flags))
+
+
+class Kommandozeile(unittest.TestCase):
+    def _run(self, script, stdin, *args):
+        import subprocess
+        return subprocess.run([sys.executable, "-I", os.path.join(LIB, script), "-", *args],
+                              input=stdin, capture_output=True, text=True)
+
+    def test_leere_eingabe(self):
+        self.assertNotEqual(self._run("humanize.py", "  ").returncode, 0)
+
+    def test_zu_kurz_exit_2(self):
+        self.assertEqual(self._run("detect.py", "Hallo Welt.").returncode, 2)
+
+    def test_json_ausgabe(self):
+        import json
+        out = json.loads(self._run("humanize.py", "Ein nahtloser Ablauf.", "--json").stdout)
+        self.assertEqual(out["text"].strip(), "Ein reibungsloser Ablauf.")
+
 
 if __name__ == "__main__":
     unittest.main()

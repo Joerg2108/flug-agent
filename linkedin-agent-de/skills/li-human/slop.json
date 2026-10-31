@@ -3,160 +3,919 @@
   "note": "Lexikon für humanize.py und detect.py (deutsche Fassung). replace = Text -> wird ersetzt. replace = \"\" -> wird gelöscht. replace = null -> wird nur markiert (Grammatik würde bei blinder Ersetzung brechen). stem = true -> Endungen werden mitgenommen (nahtlos/nahtlose/nahtlosen). Ändere die Datei nach Lust und Laune - sie gehört dir.",
   "gedankenstrich_limit": 2,
   "invisible": [
-    {"cp": "U+200B", "name": "ZERO WIDTH SPACE", "action": "delete"},
-    {"cp": "U+200C", "name": "ZERO WIDTH NON-JOINER", "action": "delete"},
-    {"cp": "U+200D", "name": "ZERO WIDTH JOINER", "action": "delete"},
-    {"cp": "U+2060", "name": "WORD JOINER", "action": "delete"},
-    {"cp": "U+FEFF", "name": "ZERO WIDTH NO-BREAK SPACE / BOM", "action": "delete"},
-    {"cp": "U+00AD", "name": "WEICHER TRENNSTRICH", "action": "delete"},
-    {"cp": "U+180E", "name": "MONGOLIAN VOWEL SEPARATOR", "action": "delete"},
-    {"cp": "U+061C", "name": "ARABIC LETTER MARK", "action": "delete"},
-    {"cp": "U+200E", "name": "LEFT-TO-RIGHT MARK", "action": "delete"},
-    {"cp": "U+200F", "name": "RIGHT-TO-LEFT MARK", "action": "delete"},
-    {"cp": "U+E0000-U+E007F", "name": "TAG-ZEICHEN (unsichtbares ASCII-Schmuggeln)", "action": "delete"},
-    {"cp": "U+00A0", "name": "GESCHÜTZTES LEERZEICHEN", "action": "space"},
-    {"cp": "U+202F", "name": "SCHMALES GESCHÜTZTES LEERZEICHEN", "action": "space"},
-    {"cp": "U+2009", "name": "SCHMALES LEERZEICHEN", "action": "space"},
-    {"cp": "U+2007", "name": "ZIFFERNLEERZEICHEN", "action": "space"},
-    {"cp": "U+2003", "name": "GEVIERT-LEERZEICHEN", "action": "space"},
-    {"cp": "U+2002", "name": "HALBGEVIERT-LEERZEICHEN", "action": "space"}
+    {
+      "cp": "U+200B",
+      "name": "ZERO WIDTH SPACE",
+      "action": "delete"
+    },
+    {
+      "cp": "U+200C",
+      "name": "ZERO WIDTH NON-JOINER",
+      "action": "delete"
+    },
+    {
+      "cp": "U+200D",
+      "name": "ZERO WIDTH JOINER",
+      "action": "delete"
+    },
+    {
+      "cp": "U+2060",
+      "name": "WORD JOINER",
+      "action": "delete"
+    },
+    {
+      "cp": "U+FEFF",
+      "name": "ZERO WIDTH NO-BREAK SPACE / BOM",
+      "action": "delete"
+    },
+    {
+      "cp": "U+00AD",
+      "name": "WEICHER TRENNSTRICH",
+      "action": "delete"
+    },
+    {
+      "cp": "U+180E",
+      "name": "MONGOLIAN VOWEL SEPARATOR",
+      "action": "delete"
+    },
+    {
+      "cp": "U+061C",
+      "name": "ARABIC LETTER MARK",
+      "action": "delete"
+    },
+    {
+      "cp": "U+200E",
+      "name": "LEFT-TO-RIGHT MARK",
+      "action": "delete"
+    },
+    {
+      "cp": "U+200F",
+      "name": "RIGHT-TO-LEFT MARK",
+      "action": "delete"
+    },
+    {
+      "cp": "U+E0000-U+E007F",
+      "name": "TAG-ZEICHEN (unsichtbares ASCII-Schmuggeln)",
+      "action": "delete"
+    },
+    {
+      "cp": "U+00A0",
+      "name": "GESCHÜTZTES LEERZEICHEN",
+      "action": "space"
+    },
+    {
+      "cp": "U+202F",
+      "name": "SCHMALES GESCHÜTZTES LEERZEICHEN",
+      "action": "space"
+    },
+    {
+      "cp": "U+2009",
+      "name": "SCHMALES LEERZEICHEN",
+      "action": "space"
+    },
+    {
+      "cp": "U+2007",
+      "name": "ZIFFERNLEERZEICHEN",
+      "action": "space"
+    },
+    {
+      "cp": "U+2003",
+      "name": "GEVIERT-LEERZEICHEN",
+      "action": "space"
+    },
+    {
+      "cp": "U+2002",
+      "name": "HALBGEVIERT-LEERZEICHEN",
+      "action": "space"
+    }
   ],
   "phrases": [
-    {"find": "in der heutigen schnelllebigen Welt", "replace": "heute", "family": "einstiege"},
-    {"find": "in unserer schnelllebigen Welt", "replace": "heute", "family": "einstiege"},
-    {"find": "in der heutigen digitalen Welt", "replace": "heute", "family": "einstiege"},
-    {"find": "in der heutigen Zeit", "replace": "heute", "family": "einstiege"},
-    {"find": "in Zeiten wie diesen", "replace": "gerade", "family": "einstiege"},
-    {"find": "in einer Welt, in der", "replace": null, "family": "einstiege", "hinweis": "Streich den Weltbezug. Sag direkt, was passiert ist."},
-    {"find": "in der sich ständig wandelnden", "replace": null, "family": "einstiege", "hinweis": "Klassischer KI-Einstieg. Ersatzlos streichen und konkret werden."},
-    {"find": "in der sich ständig verändernden", "replace": null, "family": "einstiege", "hinweis": "Klassischer KI-Einstieg. Ersatzlos streichen und konkret werden."},
-    {"find": "in der sich stetig wandelnden", "replace": null, "family": "einstiege", "hinweis": "Klassischer KI-Einstieg. Ersatzlos streichen und konkret werden."},
-    {"find": "in diesem Beitrag möchte ich", "replace": null, "family": "einstiege", "hinweis": "Nicht ankündigen. Einfach machen."},
-    {"find": "in diesem Post möchte ich", "replace": null, "family": "einstiege", "hinweis": "Nicht ankündigen. Einfach machen."},
-    {"find": "Hand aufs Herz", "replace": null, "family": "einstiege", "hinweis": "Abgenutzt. Stell die eigentliche Frage direkt."},
-    {"find": "lass das mal sacken", "replace": "", "family": "schlüsse"},
-    {"find": "lasst das mal sacken", "replace": "", "family": "schlüsse"},
-    {"find": "lies das nochmal", "replace": "", "family": "schlüsse"},
-    {"find": "das ist kein Zufall", "replace": null, "family": "füllsätze", "hinweis": "Inszenierte Pointe. Nenn direkt den Grund."},
-    {"find": "und genau das ist der Punkt", "replace": null, "family": "füllsätze", "hinweis": "Inszenierte Pointe. Sag den Punkt einfach."},
-    {"find": "und genau hier liegt der Knackpunkt", "replace": null, "family": "füllsätze", "hinweis": "Inszenierte Pointe. Sag den Punkt einfach."},
-    {"find": "von entscheidender Bedeutung", "replace": "wichtig", "family": "aufgeblasen"},
-    {"find": "von zentraler Bedeutung", "replace": "wichtig", "family": "aufgeblasen"},
-    {"find": "von großer Bedeutung", "replace": "wichtig", "family": "aufgeblasen"},
-    {"find": "eine entscheidende Rolle", "replace": "eine große Rolle", "family": "aufgeblasen"},
-    {"find": "eine zentrale Rolle", "replace": "eine große Rolle", "family": "aufgeblasen"},
-    {"find": "eine maßgebliche Rolle", "replace": "eine große Rolle", "family": "aufgeblasen"},
-    {"find": "ist nicht zu unterschätzen", "replace": "zählt", "family": "aufgeblasen"},
-    {"find": "nicht zu unterschätzen", "replace": null, "family": "aufgeblasen", "hinweis": "Sag, wie groß es wirklich ist - am besten mit Zahl."},
-    {"find": "es ist wichtig zu beachten, dass", "replace": null, "family": "füllsätze", "hinweis": "Streich die Ankündigung, behalte nur den Inhalt."},
-    {"find": "es ist wichtig zu betonen, dass", "replace": null, "family": "füllsätze", "hinweis": "Streich die Ankündigung, behalte nur den Inhalt."},
-    {"find": "es sei darauf hingewiesen", "replace": null, "family": "füllsätze", "hinweis": "Behördendeutsch. Streichen."},
-    {"find": "zusammenfassend lässt sich sagen", "replace": null, "family": "schlüsse", "hinweis": "Ein Post braucht keine Zusammenfassung."},
-    {"find": "im Folgenden", "replace": "hier", "family": "füllsätze"},
-    {"find": "am Ende des Tages", "replace": "letztlich", "family": "anglizismen"},
-    {"find": "auf das nächste Level", "replace": null, "family": "anglizismen", "hinweis": "Sag, was konkret besser wird."},
-    {"find": "auf ein neues Level", "replace": null, "family": "anglizismen", "hinweis": "Sag, was konkret besser wird."},
-    {"find": "das nächste Level", "replace": null, "family": "anglizismen", "hinweis": "Sag, was konkret besser wird."},
-    {"find": "Next Level", "replace": null, "family": "anglizismen", "hinweis": "Sag, was konkret besser wird."},
-    {"find": "Mehrwert schaffen", "replace": null, "family": "buzzwords", "hinweis": "Welcher Nutzen genau? Für wen?"},
-    {"find": "Mehrwert bieten", "replace": null, "family": "buzzwords", "hinweis": "Welcher Nutzen genau? Für wen?"},
-    {"find": "volles Potenzial", "replace": null, "family": "buzzwords", "hinweis": "Coaching-Sprech. Nenn das konkrete Ergebnis."},
-    {"find": "Potenzial entfalten", "replace": null, "family": "buzzwords", "hinweis": "Coaching-Sprech. Nenn das konkrete Ergebnis."},
-    {"find": "Herausforderungen und Chancen", "replace": null, "family": "buzzwords", "hinweis": "Leeres Paar. Nenn eine echte Herausforderung."},
-    {"find": "Chancen und Herausforderungen", "replace": null, "family": "buzzwords", "hinweis": "Leeres Paar. Nenn eine echte Herausforderung."},
-    {"find": "ein Zeugnis für", "replace": "ein Beleg für", "family": "übersetzt"},
-    {"find": "spannende Reise", "replace": null, "family": "buzzwords", "hinweis": "Was ist konkret passiert? Erzähl das."},
-    {"find": "auf dieser Reise", "replace": null, "family": "buzzwords", "hinweis": "Reise-Metapher. Was ist konkret passiert?"},
-    {"find": "meine Reise", "replace": null, "family": "buzzwords", "hinweis": "Wenn's keine echte Reise ist: Metapher streichen."},
-    {"find": "ich freue mich auf eure Kommentare", "replace": null, "family": "schlüsse", "hinweis": "Stell lieber eine Frage, die nur dieser Post stellen kann."},
-    {"find": "ich bin gespannt auf eure", "replace": null, "family": "schlüsse", "hinweis": "Stell lieber eine Frage, die nur dieser Post stellen kann."},
-    {"find": "teilt eure Erfahrungen", "replace": null, "family": "schlüsse", "hinweis": "Zu allgemein. Frag nach einer bestimmten Erfahrung."},
-    {"find": "lasst es mich in den Kommentaren wissen", "replace": null, "family": "schlüsse", "hinweis": "Engagement-Köder. Konkrete Frage statt Aufforderung."},
-    {"find": "schreibt es in die Kommentare", "replace": null, "family": "schlüsse", "hinweis": "Engagement-Köder. Konkrete Frage statt Aufforderung."},
-    {"find": "liegt mir am Herzen", "replace": null, "family": "füllsätze", "hinweis": "Zeig, warum - mit einem Erlebnis, nicht mit der Behauptung."},
-    {"find": "tauchen wir ein", "replace": null, "family": "übersetzt", "hinweis": "Übersetztes 'let's dive in'. Fang einfach an."},
-    {"find": "lasst uns eintauchen", "replace": null, "family": "übersetzt", "hinweis": "Übersetztes 'let's dive in'. Fang einfach an."},
-    {"find": "lass uns gemeinsam", "replace": null, "family": "füllsätze", "hinweis": "Floskel. Sag, was du konkret vorschlägst."},
-    {"find": "lasst uns gemeinsam", "replace": null, "family": "füllsätze", "hinweis": "Floskel. Sag, was du konkret vorschlägst."},
-    {"find": "auf Augenhöhe", "replace": null, "family": "buzzwords", "hinweis": "Behauptung ohne Inhalt. Zeig, woran man es merkt."},
-    {"find": "mit Leidenschaft", "replace": null, "family": "profil", "hinweis": "Behauptete Leidenschaft überzeugt niemanden. Belege statt Adjektive."},
-    {"find": "Deep Dive", "replace": null, "family": "anglizismen", "hinweis": "Denglisch. 'genauer Blick' - oder einfach machen."},
-    {"find": "Key Learnings", "replace": "Erkenntnisse", "family": "anglizismen"},
-    {"find": "Hands-on-Mentalität", "replace": null, "family": "profil", "hinweis": "Profil-Floskel. Nenn ein Beispiel, wo du angepackt hast."},
-    {"find": "über den Tellerrand", "replace": null, "family": "füllsätze", "hinweis": "Abgenutzte Metapher."},
-    {"find": "denn je", "replace": null, "family": "aufgeblasen", "hinweis": "'wichtiger denn je' - belegen oder streichen."},
-    {"find": "ohne Zweifel", "replace": "", "family": "verstärker"},
-    {"find": "darüber hinaus", "replace": "außerdem", "family": "verbinder"},
-    {"find": "des Weiteren", "replace": "außerdem", "family": "verbinder"}
+    {
+      "find": "in der heutigen schnelllebigen Welt",
+      "replace": "heute",
+      "family": "einstiege"
+    },
+    {
+      "find": "in unserer schnelllebigen Welt",
+      "replace": "heute",
+      "family": "einstiege"
+    },
+    {
+      "find": "in der heutigen digitalen Welt",
+      "replace": "heute",
+      "family": "einstiege"
+    },
+    {
+      "find": "in der heutigen Zeit",
+      "replace": "heute",
+      "family": "einstiege"
+    },
+    {
+      "find": "in Zeiten wie diesen",
+      "replace": "gerade",
+      "family": "einstiege"
+    },
+    {
+      "find": "in einer Welt, in der",
+      "replace": null,
+      "family": "einstiege",
+      "hinweis": "Streich den Weltbezug. Sag direkt, was passiert ist."
+    },
+    {
+      "find": "in der sich ständig wandelnden",
+      "replace": null,
+      "family": "einstiege",
+      "hinweis": "Klassischer KI-Einstieg. Ersatzlos streichen und konkret werden."
+    },
+    {
+      "find": "in der sich ständig verändernden",
+      "replace": null,
+      "family": "einstiege",
+      "hinweis": "Klassischer KI-Einstieg. Ersatzlos streichen und konkret werden."
+    },
+    {
+      "find": "in der sich stetig wandelnden",
+      "replace": null,
+      "family": "einstiege",
+      "hinweis": "Klassischer KI-Einstieg. Ersatzlos streichen und konkret werden."
+    },
+    {
+      "find": "in diesem Beitrag möchte ich",
+      "replace": null,
+      "family": "einstiege",
+      "hinweis": "Nicht ankündigen. Einfach machen."
+    },
+    {
+      "find": "in diesem Post möchte ich",
+      "replace": null,
+      "family": "einstiege",
+      "hinweis": "Nicht ankündigen. Einfach machen."
+    },
+    {
+      "find": "Hand aufs Herz",
+      "replace": null,
+      "family": "einstiege",
+      "hinweis": "Abgenutzt. Stell die eigentliche Frage direkt."
+    },
+    {
+      "find": "lass das mal sacken",
+      "replace": "",
+      "family": "schlüsse"
+    },
+    {
+      "find": "lasst das mal sacken",
+      "replace": "",
+      "family": "schlüsse"
+    },
+    {
+      "find": "lies das nochmal",
+      "replace": "",
+      "family": "schlüsse"
+    },
+    {
+      "find": "das ist kein Zufall",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Inszenierte Pointe. Nenn direkt den Grund."
+    },
+    {
+      "find": "und genau das ist der Punkt",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Inszenierte Pointe. Sag den Punkt einfach."
+    },
+    {
+      "find": "und genau hier liegt der Knackpunkt",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Inszenierte Pointe. Sag den Punkt einfach."
+    },
+    {
+      "find": "von entscheidender Bedeutung",
+      "replace": "wichtig",
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "von zentraler Bedeutung",
+      "replace": "wichtig",
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "von großer Bedeutung",
+      "replace": "wichtig",
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "eine entscheidende Rolle",
+      "replace": "eine große Rolle",
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "eine zentrale Rolle",
+      "replace": "eine große Rolle",
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "eine maßgebliche Rolle",
+      "replace": "eine große Rolle",
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "ist nicht zu unterschätzen",
+      "replace": "zählt",
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "nicht zu unterschätzen",
+      "replace": null,
+      "family": "aufgeblasen",
+      "hinweis": "Sag, wie groß es wirklich ist - am besten mit Zahl."
+    },
+    {
+      "find": "es ist wichtig zu beachten, dass",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Streich die Ankündigung, behalte nur den Inhalt."
+    },
+    {
+      "find": "es ist wichtig zu betonen, dass",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Streich die Ankündigung, behalte nur den Inhalt."
+    },
+    {
+      "find": "es sei darauf hingewiesen",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Behördendeutsch. Streichen."
+    },
+    {
+      "find": "zusammenfassend lässt sich sagen",
+      "replace": null,
+      "family": "schlüsse",
+      "hinweis": "Ein Post braucht keine Zusammenfassung."
+    },
+    {
+      "find": "im Folgenden",
+      "replace": "hier",
+      "family": "füllsätze"
+    },
+    {
+      "find": "am Ende des Tages",
+      "replace": "letztlich",
+      "family": "anglizismen"
+    },
+    {
+      "find": "auf das nächste Level",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Sag, was konkret besser wird."
+    },
+    {
+      "find": "auf ein neues Level",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Sag, was konkret besser wird."
+    },
+    {
+      "find": "das nächste Level",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Sag, was konkret besser wird."
+    },
+    {
+      "find": "Next Level",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Sag, was konkret besser wird."
+    },
+    {
+      "find": "Mehrwert schaffen",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Welcher Nutzen genau? Für wen?"
+    },
+    {
+      "find": "Mehrwert bieten",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Welcher Nutzen genau? Für wen?"
+    },
+    {
+      "find": "volles Potenzial",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Coaching-Sprech. Nenn das konkrete Ergebnis."
+    },
+    {
+      "find": "Potenzial entfalten",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Coaching-Sprech. Nenn das konkrete Ergebnis."
+    },
+    {
+      "find": "Herausforderungen und Chancen",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Leeres Paar. Nenn eine echte Herausforderung."
+    },
+    {
+      "find": "Chancen und Herausforderungen",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Leeres Paar. Nenn eine echte Herausforderung."
+    },
+    {
+      "find": "ein Zeugnis für",
+      "replace": "ein Beleg für",
+      "family": "übersetzt"
+    },
+    {
+      "find": "spannende Reise",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Was ist konkret passiert? Erzähl das."
+    },
+    {
+      "find": "auf dieser Reise",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Reise-Metapher. Was ist konkret passiert?"
+    },
+    {
+      "find": "meine Reise",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Wenn's keine echte Reise ist: Metapher streichen."
+    },
+    {
+      "find": "ich freue mich auf eure Kommentare",
+      "replace": null,
+      "family": "schlüsse",
+      "hinweis": "Stell lieber eine Frage, die nur dieser Post stellen kann."
+    },
+    {
+      "find": "ich bin gespannt auf eure",
+      "replace": null,
+      "family": "schlüsse",
+      "hinweis": "Stell lieber eine Frage, die nur dieser Post stellen kann."
+    },
+    {
+      "find": "teilt eure Erfahrungen",
+      "replace": null,
+      "family": "schlüsse",
+      "hinweis": "Zu allgemein. Frag nach einer bestimmten Erfahrung."
+    },
+    {
+      "find": "lasst es mich in den Kommentaren wissen",
+      "replace": null,
+      "family": "schlüsse",
+      "hinweis": "Engagement-Köder. Konkrete Frage statt Aufforderung."
+    },
+    {
+      "find": "schreibt es in die Kommentare",
+      "replace": null,
+      "family": "schlüsse",
+      "hinweis": "Engagement-Köder. Konkrete Frage statt Aufforderung."
+    },
+    {
+      "find": "liegt mir am Herzen",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Zeig, warum - mit einem Erlebnis, nicht mit der Behauptung."
+    },
+    {
+      "find": "tauchen wir ein",
+      "replace": null,
+      "family": "übersetzt",
+      "hinweis": "Übersetztes 'let's dive in'. Fang einfach an."
+    },
+    {
+      "find": "lasst uns eintauchen",
+      "replace": null,
+      "family": "übersetzt",
+      "hinweis": "Übersetztes 'let's dive in'. Fang einfach an."
+    },
+    {
+      "find": "lass uns gemeinsam",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Floskel. Sag, was du konkret vorschlägst."
+    },
+    {
+      "find": "lasst uns gemeinsam",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Floskel. Sag, was du konkret vorschlägst."
+    },
+    {
+      "find": "auf Augenhöhe",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Behauptung ohne Inhalt. Zeig, woran man es merkt."
+    },
+    {
+      "find": "mit Leidenschaft",
+      "replace": null,
+      "family": "profil",
+      "hinweis": "Behauptete Leidenschaft überzeugt niemanden. Belege statt Adjektive."
+    },
+    {
+      "find": "Deep Dive",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Denglisch. 'genauer Blick' - oder einfach machen."
+    },
+    {
+      "find": "Key Learnings",
+      "replace": "Erkenntnisse",
+      "family": "anglizismen"
+    },
+    {
+      "find": "Hands-on-Mentalität",
+      "replace": null,
+      "family": "profil",
+      "hinweis": "Profil-Floskel. Nenn ein Beispiel, wo du angepackt hast."
+    },
+    {
+      "find": "über den Tellerrand",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Abgenutzte Metapher."
+    },
+    {
+      "find": "denn je",
+      "replace": null,
+      "family": "aufgeblasen",
+      "hinweis": "'wichtiger denn je' - belegen oder streichen."
+    },
+    {
+      "find": "ohne Zweifel",
+      "replace": "",
+      "family": "verstärker"
+    },
+    {
+      "find": "darüber hinaus",
+      "replace": "außerdem",
+      "family": "verbinder"
+    },
+    {
+      "find": "des Weiteren",
+      "replace": "außerdem",
+      "family": "verbinder"
+    },
+    {
+      "find": "in meiner langjährigen Tätigkeit",
+      "replace": null,
+      "family": "einstiege",
+      "hinweis": "Wie viele Jahre genau? Zahl statt 'langjährig'."
+    },
+    {
+      "find": "in meiner langjährigen Erfahrung",
+      "replace": null,
+      "family": "einstiege",
+      "hinweis": "Wie viele Jahre genau? Zahl statt 'langjährig'."
+    },
+    {
+      "find": "der entscheidende Faktor",
+      "replace": null,
+      "family": "aufgeblasen",
+      "hinweis": "Belegen: Woran sieht man das?"
+    },
+    {
+      "find": "der Mensch bleibt",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Allgemeinplatz. Erzähl einen konkreten Fall."
+    },
+    {
+      "find": "stetig weiterzuentwickeln",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Coaching-Sprech. Was hast du zuletzt konkret gelernt?"
+    },
+    {
+      "find": "stetig weiterentwickeln",
+      "replace": null,
+      "family": "füllsätze",
+      "hinweis": "Coaching-Sprech. Was hast du zuletzt konkret gelernt?"
+    },
+    {
+      "find": "kontinuierliche Weiterbildung",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Welche Schulung, wann? Konkret werden."
+    }
   ],
   "words": [
-    {"find": "nahtlos", "replace": "reibungslos", "stem": true, "family": "buzzwords"},
-    {"find": "maßgeschneidert", "replace": "passend", "stem": true, "family": "buzzwords"},
-    {"find": "ganzheitlich", "replace": "umfassend", "stem": true, "family": "buzzwords"},
-    {"find": "innovativ", "replace": "neu", "stem": true, "family": "buzzwords"},
-    {"find": "zukunftsweisend", "replace": "neu", "stem": true, "family": "buzzwords"},
-    {"find": "bahnbrechend", "replace": "stark", "stem": true, "family": "buzzwords"},
-    {"find": "wegweisend", "replace": "wichtig", "stem": true, "family": "buzzwords"},
-    {"find": "revolutionär", "replace": "neu", "stem": true, "family": "buzzwords"},
-    {"find": "essenziell", "replace": "wichtig", "stem": true, "family": "aufgeblasen"},
-    {"find": "essentiell", "replace": "wichtig", "stem": true, "family": "aufgeblasen"},
-    {"find": "unerlässlich", "replace": "nötig", "stem": true, "family": "aufgeblasen"},
-    {"find": "unabdingbar", "replace": "nötig", "stem": true, "family": "aufgeblasen"},
-    {"find": "robust", "replace": "stabil", "stem": true, "family": "buzzwords"},
-    {"find": "facettenreich", "replace": "vielseitig", "stem": true, "family": "aufgeblasen"},
-    {"find": "vielschichtig", "replace": "komplex", "stem": true, "family": "aufgeblasen"},
-    {"find": "wertvoll", "replace": "nützlich", "stem": true, "family": "aufgeblasen"},
-    {"find": "spannend", "replace": null, "stem": true, "family": "buzzwords", "hinweis": "Das LinkedIn-Wort Nr. 1. Sag, was daran konkret neu oder überraschend ist."},
-    {"find": "ergebnisorientiert", "replace": null, "stem": true, "family": "profil", "hinweis": "Profil-Floskel. Nenn ein Ergebnis mit Zahl."},
-    {"find": "lösungsorientiert", "replace": null, "stem": true, "family": "profil", "hinweis": "Profil-Floskel. Nenn ein gelöstes Problem."},
-    {"find": "zielorientiert", "replace": null, "stem": true, "family": "profil", "hinweis": "Profil-Floskel. Nenn ein erreichtes Ziel."},
-    {"find": "leidenschaftlich", "replace": null, "stem": true, "family": "profil", "hinweis": "Behauptete Leidenschaft. Belege statt Adjektive."},
-    {"find": "passioniert", "replace": null, "stem": true, "family": "profil", "hinweis": "Behauptete Leidenschaft. Belege statt Adjektive."},
-    {"find": "maßgeblich", "replace": null, "stem": true, "family": "aufgeblasen", "hinweis": "Wie stark genau? Zahl oder streichen."},
-    {"find": "zweifellos", "replace": "", "family": "verstärker"},
-    {"find": "zweifelsohne", "replace": "", "family": "verstärker"},
-    {"find": "definitiv", "replace": "sicher", "family": "anglizismen"},
-    {"find": "nichtsdestotrotz", "replace": "trotzdem", "family": "verbinder"},
-    {"find": "letztendlich", "replace": "am Ende", "family": "verbinder"},
-    {"find": "folglich", "replace": "also", "family": "verbinder"},
-    {"find": "Mehrwert", "replace": "Nutzen", "family": "buzzwords"},
-    {"find": "Learnings", "replace": "Erkenntnisse", "family": "anglizismen"},
-    {"find": "Insights", "replace": "Einblicke", "family": "anglizismen"},
-    {"find": "Benefits", "replace": "Vorteile", "family": "anglizismen"},
-    {"find": "Benefit", "replace": "Vorteil", "family": "anglizismen"},
-    {"find": "Challenges", "replace": "Herausforderungen", "family": "anglizismen"},
-    {"find": "Challenge", "replace": "Herausforderung", "family": "anglizismen"},
-    {"find": "Mindset", "replace": null, "family": "anglizismen", "hinweis": "Welche Haltung genau? Beschreib sie."},
-    {"find": "Impact", "replace": null, "family": "anglizismen", "hinweis": "Welche Wirkung? Mit Zahl."},
-    {"find": "Commitment", "replace": null, "family": "anglizismen", "hinweis": "Denglisch. 'Einsatz', 'Zusage' - oder zeig es."},
-    {"find": "Purpose", "replace": null, "family": "anglizismen", "hinweis": "Denglisch. Sag, wofür genau."},
-    {"find": "performen", "replace": null, "stem": true, "family": "anglizismen", "hinweis": "Denglisch. 'laufen', 'funktionieren', 'abliefern'."},
-    {"find": "Gamechanger", "replace": null, "family": "anglizismen", "hinweis": "Was ändert sich konkret? Vorher/nachher mit Zahl."},
-    {"find": "Game-Changer", "replace": null, "family": "anglizismen", "hinweis": "Was ändert sich konkret? Vorher/nachher mit Zahl."},
-    {"find": "Game Changer", "replace": null, "family": "anglizismen", "hinweis": "Was ändert sich konkret? Vorher/nachher mit Zahl."},
-    {"find": "Synergie", "replace": null, "stem": true, "family": "buzzwords", "hinweis": "Wer arbeitet mit wem zusammen, und was kommt raus?"},
-    {"find": "Paradigmenwechsel", "replace": null, "family": "buzzwords", "hinweis": "Großes Wort. Was genau ist anders als vorher?"},
-    {"find": "Ökosystem", "replace": null, "family": "buzzwords", "hinweis": "Außer in der Biologie: Wer genau ist gemeint?"},
-    {"find": "eintauchen", "replace": null, "family": "übersetzt", "hinweis": "Übersetztes 'dive into'. 'ansehen', 'durchgehen'."},
-    {"find": "beleuchten", "replace": null, "stem": true, "family": "verben", "hinweis": "KI-Verb. 'ansehen', 'erklären', 'zeigen'."},
-    {"find": "unterstreich", "replace": null, "stem": true, "family": "verben", "hinweis": "'Das unterstreicht ...' ist KI-Rhythmus. Sag, was es zeigt."},
-    {"find": "revolutionier", "replace": null, "stem": true, "family": "verben", "hinweis": "Großes Wort. Was ändert sich konkret?"},
-    {"find": "Teamplayer", "replace": null, "family": "profil", "hinweis": "Profil-Floskel. Zeig ein Teamergebnis."}
+    {
+      "find": "nahtlos",
+      "replace": "reibungslos",
+      "stem": true,
+      "family": "buzzwords"
+    },
+    {
+      "find": "maßgeschneidert",
+      "replace": "passend",
+      "stem": true,
+      "family": "buzzwords"
+    },
+    {
+      "find": "ganzheitlich",
+      "replace": "umfassend",
+      "stem": true,
+      "family": "buzzwords"
+    },
+    {
+      "find": "innovativ",
+      "replace": "neu",
+      "stem": true,
+      "family": "buzzwords"
+    },
+    {
+      "find": "zukunftsweisend",
+      "replace": "neu",
+      "stem": true,
+      "family": "buzzwords"
+    },
+    {
+      "find": "bahnbrechend",
+      "replace": "stark",
+      "stem": true,
+      "family": "buzzwords"
+    },
+    {
+      "find": "wegweisend",
+      "replace": "wichtig",
+      "stem": true,
+      "family": "buzzwords"
+    },
+    {
+      "find": "revolutionär",
+      "replace": "neu",
+      "stem": true,
+      "family": "buzzwords"
+    },
+    {
+      "find": "essenziell",
+      "replace": "wichtig",
+      "stem": true,
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "essentiell",
+      "replace": "wichtig",
+      "stem": true,
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "unerlässlich",
+      "replace": "nötig",
+      "stem": true,
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "unabdingbar",
+      "replace": "nötig",
+      "stem": true,
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "robust",
+      "replace": "stabil",
+      "stem": true,
+      "family": "buzzwords"
+    },
+    {
+      "find": "facettenreich",
+      "replace": "vielseitig",
+      "stem": true,
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "vielschichtig",
+      "replace": "komplex",
+      "stem": true,
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "wertvoll",
+      "replace": "nützlich",
+      "stem": true,
+      "family": "aufgeblasen"
+    },
+    {
+      "find": "spannend",
+      "replace": null,
+      "stem": true,
+      "family": "buzzwords",
+      "hinweis": "Das LinkedIn-Wort Nr. 1. Sag, was daran konkret neu oder überraschend ist."
+    },
+    {
+      "find": "ergebnisorientiert",
+      "replace": null,
+      "stem": true,
+      "family": "profil",
+      "hinweis": "Profil-Floskel. Nenn ein Ergebnis mit Zahl."
+    },
+    {
+      "find": "lösungsorientiert",
+      "replace": null,
+      "stem": true,
+      "family": "profil",
+      "hinweis": "Profil-Floskel. Nenn ein gelöstes Problem."
+    },
+    {
+      "find": "zielorientiert",
+      "replace": null,
+      "stem": true,
+      "family": "profil",
+      "hinweis": "Profil-Floskel. Nenn ein erreichtes Ziel."
+    },
+    {
+      "find": "leidenschaftlich",
+      "replace": null,
+      "stem": true,
+      "family": "profil",
+      "hinweis": "Behauptete Leidenschaft. Belege statt Adjektive."
+    },
+    {
+      "find": "passioniert",
+      "replace": null,
+      "stem": true,
+      "family": "profil",
+      "hinweis": "Behauptete Leidenschaft. Belege statt Adjektive."
+    },
+    {
+      "find": "maßgeblich",
+      "replace": null,
+      "stem": true,
+      "family": "aufgeblasen",
+      "hinweis": "Wie stark genau? Zahl oder streichen."
+    },
+    {
+      "find": "zweifellos",
+      "replace": "",
+      "family": "verstärker"
+    },
+    {
+      "find": "zweifelsohne",
+      "replace": "",
+      "family": "verstärker"
+    },
+    {
+      "find": "definitiv",
+      "replace": "sicher",
+      "family": "anglizismen"
+    },
+    {
+      "find": "nichtsdestotrotz",
+      "replace": "trotzdem",
+      "family": "verbinder"
+    },
+    {
+      "find": "letztendlich",
+      "replace": "am Ende",
+      "family": "verbinder"
+    },
+    {
+      "find": "folglich",
+      "replace": "also",
+      "family": "verbinder"
+    },
+    {
+      "find": "Mehrwert",
+      "replace": "Nutzen",
+      "family": "buzzwords"
+    },
+    {
+      "find": "Learnings",
+      "replace": "Erkenntnisse",
+      "family": "anglizismen"
+    },
+    {
+      "find": "Insights",
+      "replace": "Einblicke",
+      "family": "anglizismen"
+    },
+    {
+      "find": "Benefits",
+      "replace": "Vorteile",
+      "family": "anglizismen"
+    },
+    {
+      "find": "Benefit",
+      "replace": "Vorteil",
+      "family": "anglizismen"
+    },
+    {
+      "find": "Challenges",
+      "replace": "Herausforderungen",
+      "family": "anglizismen"
+    },
+    {
+      "find": "Challenge",
+      "replace": "Herausforderung",
+      "family": "anglizismen"
+    },
+    {
+      "find": "Mindset",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Welche Haltung genau? Beschreib sie."
+    },
+    {
+      "find": "Impact",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Welche Wirkung? Mit Zahl."
+    },
+    {
+      "find": "Commitment",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Denglisch. 'Einsatz', 'Zusage' - oder zeig es."
+    },
+    {
+      "find": "Purpose",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Denglisch. Sag, wofür genau."
+    },
+    {
+      "find": "performen",
+      "replace": null,
+      "stem": true,
+      "family": "anglizismen",
+      "hinweis": "Denglisch. 'laufen', 'funktionieren', 'abliefern'."
+    },
+    {
+      "find": "Gamechanger",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Was ändert sich konkret? Vorher/nachher mit Zahl."
+    },
+    {
+      "find": "Game-Changer",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Was ändert sich konkret? Vorher/nachher mit Zahl."
+    },
+    {
+      "find": "Game Changer",
+      "replace": null,
+      "family": "anglizismen",
+      "hinweis": "Was ändert sich konkret? Vorher/nachher mit Zahl."
+    },
+    {
+      "find": "Synergie",
+      "replace": null,
+      "stem": true,
+      "family": "buzzwords",
+      "hinweis": "Wer arbeitet mit wem zusammen, und was kommt raus?"
+    },
+    {
+      "find": "Paradigmenwechsel",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Großes Wort. Was genau ist anders als vorher?"
+    },
+    {
+      "find": "Ökosystem",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Außer in der Biologie: Wer genau ist gemeint?"
+    },
+    {
+      "find": "eintauchen",
+      "replace": null,
+      "family": "übersetzt",
+      "hinweis": "Übersetztes 'dive into'. 'ansehen', 'durchgehen'."
+    },
+    {
+      "find": "beleuchten",
+      "replace": null,
+      "stem": true,
+      "family": "verben",
+      "hinweis": "KI-Verb. 'ansehen', 'erklären', 'zeigen'."
+    },
+    {
+      "find": "unterstreich",
+      "replace": null,
+      "stem": true,
+      "family": "verben",
+      "hinweis": "'Das unterstreicht ...' ist KI-Rhythmus. Sag, was es zeigt."
+    },
+    {
+      "find": "revolutionier",
+      "replace": null,
+      "stem": true,
+      "family": "verben",
+      "hinweis": "Großes Wort. Was ändert sich konkret?"
+    },
+    {
+      "find": "Teamplayer",
+      "replace": null,
+      "family": "profil",
+      "hinweis": "Profil-Floskel. Zeig ein Teamergebnis."
+    },
+    {
+      "find": "Professionalität",
+      "replace": null,
+      "family": "buzzwords",
+      "hinweis": "Behauptung. Zeig ein professionelles Verhalten statt das Wort."
+    }
   ],
   "structures": [
-    {"id": "nicht-nur-sondern", "regex": "(?i)\\bnicht\\s+nur\\b[^.!?\\n]{2,80}\\bsondern\\s+auch\\b", "name": "„Nicht nur X, sondern auch Y“", "fix": "In zwei Sätze teilen oder die schwächere Hälfte streichen."},
-    {"id": "es-geht-nicht-um", "regex": "(?i)\\bes\\s+geht\\s+nicht\\s+(?:nur\\s+)?(?:um|darum)\\b[^.!?\\n]{2,80}[,.;–-]\\s*(?:es\\s+geht\\s+(?:um|darum)|sondern)\\b", "name": "„Es geht nicht um X. Es geht um Y.“", "fix": "Fang direkt mit Y an. Die Umkehrung ist das Erkennungsmerkmal."},
-    {"id": "das-ist-nicht-x", "regex": "(?i)\\b(?:das|es)\\s+ist\\s+nicht\\s+(?:einfach\\s+|nur\\s+|bloß\\s+)?[^.!?\\n]{2,60}[,.]\\s*(?:das|es)\\s+ist\\b", "name": "„Das ist nicht X. Das ist Y.“", "fix": "Sag nur, was es ist. Die Aufbau-Hälfte streichen."},
-    {"id": "rhetorische-zeile", "regex": "(?im)^\\s*(?:das\\s+ergebnis|der\\s+clou|der\\s+haken|die\\s+wahrheit|die\\s+lösung|der\\s+grund|die\\s+antwort|und\\s+jetzt|warum|das\\s+problem)\\?\\s*$", "name": "Rhetorische Ein-Wort-Frage als eigene Zeile", "fix": "Beantworte es im Satz, statt eine Enthüllung zu inszenieren."},
-    {"id": "doppelpunkt-pointe", "regex": "(?i)\\b(?:spoiler|fakt\\s+ist|die\\s+wahrheit\\s+ist|die\\s+(?:bittere|unbequeme|harte)\\s+wahrheit(?:\\s+ist)?|und\\s+das\\s+beste|plot\\s*twist)\\s*:", "name": "Inszenierte Pointe mit Doppelpunkt („Spoiler:“, „Fakt ist:“)", "fix": "Sag es einfach. Die Ankündigung ist das Merkmal."},
-    {"id": "was-ich-gelernt", "regex": "(?i)\\b(?:hier\\s+ist,?\\s+was\\s+ich\\s+gelernt\\s+habe|das\\s+habe\\s+ich\\s+(?:daraus\\s+)?gelernt\\s*:|meine\\s+(?:\\d+\\s+)?(?:learnings|erkenntnisse)\\s*:)", "name": "„Das habe ich gelernt:“", "fix": "Nenn die Erkenntnis. Lass die Ankündigung weg."},
-    {"id": "kennst-du-das", "regex": "(?im)^\\s*(?:kennst\\s+du\\s+das|kennt\\s+ihr\\s+das|stell\\s+dir\\s+vor|stellt\\s+euch\\s+vor)\\b", "name": "KI-Einstieg „Kennst du das?“ / „Stell dir vor“", "fix": "Fang mit der konkreten Szene an, nicht mit der Einladung dazu."},
-    {"id": "freue-mich-mitzuteilen", "regex": "(?i)\\bich\\s+(?:freue\\s+mich|bin\\s+stolz|bin\\s+begeistert|bin\\s+dankbar)\\b[^.!?\\n]{0,40}\\b(?:mitteilen|verkünden|bekanntgeben|bekannt\\s+geben|teilen)\\b", "name": "„Ich freue mich, mitteilen zu dürfen ...“", "fix": "Sag einfach, was passiert ist. Die Freude merkt man dann von selbst."},
-    {"id": "dreierkette", "regex": "(?i)\\b[^\\W\\d_]+,\\s+[^\\W\\d_]+\\s+und\\s+[^\\W\\d_]+[.!]", "name": "Dreierkette („A, B und C.“)", "fix": "Zwei Dinge oder vier. Drei ist der Standard-Rhythmus des Modells."},
-    {"id": "rakete", "regex": "[\\U0001F680\\U0001F525\\U0001F4A1\\u2728\\U0001F3AF]", "name": "Rakete / Feuer / Glühbirne / Funkeln / Zielscheibe", "fix": "Höchstens ein Emoji, und nicht eins von diesen fünf."},
-    {"id": "hashtag-wand", "regex": "(?:#[\\w-]+[ \\t]*){5,}", "name": "Hashtag-Wand (5+)", "fix": "Drei Hashtags reichen. Die Wand belohnt LinkedIn nicht mehr."},
-    {"id": "ki-selbstbezug", "regex": "(?i)\\bals\\s+(?:eine\\s+)?(?:ki|künstliche\\s+intelligenz|sprachmodell)\\b", "name": "KI-Selbstbezug", "fix": "Satz löschen."},
-    {"id": "aufsatz-schluss", "regex": "(?im)^\\s*(?:fazit|zusammenfassend|abschließend|kurzum|alles\\s+in\\s+allem|zum\\s+schluss)\\b", "name": "Aufsatz-Schluss („Fazit:“, „Zusammenfassend“)", "fix": "Ein Post braucht keinen Schlussabsatz."},
-    {"id": "engagement-koeder", "regex": "(?im)(?:was\\s+(?:denkt|meint|sagt)\\s+ihr(?:\\s+dazu)?\\?|wie\\s+seht\\s+ihr\\s+das\\?|seht\\s+ihr\\s+das\\s+(?:auch\\s+)?so\\?|wer\\s+kennt\\s+das\\?|wer\\s+noch\\?|stimmt\\s+ihr\\s+zu\\?|was\\s+denkst\\s+du\\?|wie\\s+siehst\\s+du\\s+das\\?|was\\s+meinst\\s+du\\?)\\s*$", "name": "Reflex-Engagement-Köder („Was denkt ihr?“)", "fix": "Stell eine Frage, die nur du stellen kannst - zu genau dem, was drüber steht."}
+    {
+      "id": "nicht-nur-sondern",
+      "regex": "(?i)\\bnicht\\s+nur\\b[^.!?\\n]{2,80}\\bsondern\\s+auch\\b",
+      "name": "„Nicht nur X, sondern auch Y“",
+      "fix": "In zwei Sätze teilen oder die schwächere Hälfte streichen."
+    },
+    {
+      "id": "es-geht-nicht-um",
+      "regex": "(?i)\\bes\\s+geht\\s+nicht\\s+(?:nur\\s+)?(?:um|darum)\\b[^.!?\\n]{2,80}[,.;–-]\\s*(?:es\\s+geht\\s+(?:um|darum)|sondern)\\b",
+      "name": "„Es geht nicht um X. Es geht um Y.“",
+      "fix": "Fang direkt mit Y an. Die Umkehrung ist das Erkennungsmerkmal."
+    },
+    {
+      "id": "das-ist-nicht-x",
+      "regex": "(?i)\\b(?:das|es)\\s+ist\\s+nicht\\s+(?:einfach\\s+|nur\\s+|bloß\\s+)?[^.!?\\n]{2,60}[,.]\\s*(?:das|es)\\s+ist\\b",
+      "name": "„Das ist nicht X. Das ist Y.“",
+      "fix": "Sag nur, was es ist. Die Aufbau-Hälfte streichen."
+    },
+    {
+      "id": "kein-x-sondern",
+      "regex": "(?i)\\b(?:ist|sind|war|bleibt)\\s+kein(?:e|en|er)?\\s+[^.!?\\n,]{2,40},\\s*sondern\\b",
+      "name": "„X ist kein A, sondern B“",
+      "fix": "Sag nur B, und belege es. Die Gegenüberstellung ist KI-Rhythmus."
+    },
+    {
+      "id": "rhetorische-zeile",
+      "regex": "(?im)^\\s*(?:das\\s+ergebnis|der\\s+clou|der\\s+haken|die\\s+wahrheit|die\\s+lösung|der\\s+grund|die\\s+antwort|und\\s+jetzt|warum|das\\s+problem)\\?\\s*$",
+      "name": "Rhetorische Ein-Wort-Frage als eigene Zeile",
+      "fix": "Beantworte es im Satz, statt eine Enthüllung zu inszenieren."
+    },
+    {
+      "id": "doppelpunkt-pointe",
+      "regex": "(?i)\\b(?:spoiler|fakt\\s+ist|die\\s+wahrheit\\s+ist|die\\s+(?:bittere|unbequeme|harte)\\s+wahrheit(?:\\s+ist)?|und\\s+das\\s+beste|plot\\s*twist)\\s*:",
+      "name": "Inszenierte Pointe mit Doppelpunkt („Spoiler:“, „Fakt ist:“)",
+      "fix": "Sag es einfach. Die Ankündigung ist das Merkmal."
+    },
+    {
+      "id": "was-ich-gelernt",
+      "regex": "(?i)\\b(?:hier\\s+ist,?\\s+was\\s+ich\\s+gelernt\\s+habe|das\\s+habe\\s+ich\\s+(?:daraus\\s+)?gelernt\\s*:|meine\\s+(?:\\d+\\s+)?(?:learnings|erkenntnisse)\\s*:)",
+      "name": "„Das habe ich gelernt:“",
+      "fix": "Nenn die Erkenntnis. Lass die Ankündigung weg."
+    },
+    {
+      "id": "kennst-du-das",
+      "regex": "(?im)^\\s*(?:kennst\\s+du\\s+das|kennt\\s+ihr\\s+das|stell\\s+dir\\s+vor|stellt\\s+euch\\s+vor)\\b",
+      "name": "KI-Einstieg „Kennst du das?“ / „Stell dir vor“",
+      "fix": "Fang mit der konkreten Szene an, nicht mit der Einladung dazu."
+    },
+    {
+      "id": "freue-mich-mitzuteilen",
+      "regex": "(?i)\\bich\\s+(?:freue\\s+mich|bin\\s+stolz|bin\\s+begeistert|bin\\s+dankbar)\\b[^.!?\\n]{0,40}\\b(?:mitteilen|verkünden|bekanntgeben|bekannt\\s+geben|teilen)\\b",
+      "name": "„Ich freue mich, mitteilen zu dürfen ...“",
+      "fix": "Sag einfach, was passiert ist. Die Freude merkt man dann von selbst."
+    },
+    {
+      "id": "dreierkette",
+      "regex": "(?i)\\b[^\\W\\d_]+,\\s+[^\\W\\d_]+\\s+und\\s+[^\\W\\d_]+[.!]",
+      "name": "Dreierkette („A, B und C.“)",
+      "fix": "Zwei Dinge oder vier. Drei ist der Standard-Rhythmus des Modells."
+    },
+    {
+      "id": "rakete",
+      "regex": "[\\U0001F680\\U0001F525\\U0001F4A1\\u2728\\U0001F3AF]",
+      "name": "Rakete / Feuer / Glühbirne / Funkeln / Zielscheibe",
+      "fix": "Höchstens ein Emoji, und nicht eins von diesen fünf."
+    },
+    {
+      "id": "hashtag-wand",
+      "regex": "(?:#[\\w-]+[ \\t]*){5,}",
+      "name": "Hashtag-Wand (5+)",
+      "fix": "Drei Hashtags reichen. Die Wand belohnt LinkedIn nicht mehr."
+    },
+    {
+      "id": "ki-selbstbezug",
+      "regex": "(?i)\\bals\\s+(?:eine\\s+)?(?:ki|künstliche\\s+intelligenz|sprachmodell)\\b",
+      "name": "KI-Selbstbezug",
+      "fix": "Satz löschen."
+    },
+    {
+      "id": "aufsatz-schluss",
+      "regex": "(?im)^\\s*(?:fazit|zusammenfassend|abschließend|kurzum|alles\\s+in\\s+allem|zum\\s+schluss)\\b",
+      "name": "Aufsatz-Schluss („Fazit:“, „Zusammenfassend“)",
+      "fix": "Ein Post braucht keinen Schlussabsatz."
+    },
+    {
+      "id": "engagement-koeder",
+      "regex": "(?im)(?:was\\s+(?:denkt|meint|sagt)\\s+ihr(?:\\s+dazu)?\\?|wie\\s+seht\\s+ihr\\s+das\\?|seht\\s+ihr\\s+das\\s+(?:auch\\s+)?so\\?|wer\\s+kennt\\s+das\\?|wer\\s+noch\\?|stimmt\\s+ihr\\s+zu\\?|was\\s+denkst\\s+du\\?|wie\\s+siehst\\s+du\\s+das\\?|was\\s+meinst\\s+du\\?|welche\\s+erfahrungen\\s+(?:habt\\s+ihr|hast\\s+du|haben\\s+sie)(?:\\s+gemacht)?\\?)[^\\w\\n]*$",
+      "name": "Reflex-Engagement-Köder („Was denkt ihr?“)",
+      "fix": "Stell eine Frage, die nur du stellen kannst - zu genau dem, was drüber steht."
+    }
   ]
 }

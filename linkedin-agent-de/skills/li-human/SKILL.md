@@ -21,8 +21,8 @@ python3 detect.py vorher.txt nachher.txt           # Verbesserung belegen
 python3 humanize.py entwurf.txt --striche komma    # Gedankenstriche zu Kommas
 ```
 
-Beide lesen `slop.json`, das Lexikon: rund 120 deutsche Floskeln, Buzzwords
-und Denglisch-Begriffe, 17 Klassen unsichtbarer Zeichen und 14 Strukturmuster.
+Beide lesen `slop.json`, das Lexikon: 126 deutsche Floskeln, Buzzwords
+und Denglisch-Begriffe, 17 Klassen unsichtbarer Zeichen und 15 Strukturmuster.
 Es ist zum Bearbeiten gedacht. Wenn der Nutzer ein Wort bewusst verwendet, das
 das Lexikon anmeckert, nimm es raus.
 

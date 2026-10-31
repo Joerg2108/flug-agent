@@ -22,10 +22,16 @@ cp linkedin-agent-de/templates/voice.md ~/.claude/linkedin/voice.md
 Nur für ein Projekt: dieselben Ordner nach `.claude/skills/` im Projekt
 kopieren.
 
-Als Plugin, sobald der Ordner als eigenes GitHub-Repo liegt:
+Als Plugin direkt aus GitHub (Claude Code 2.1.275 oder neuer, ein Schritt):
 
 ```
-/plugin marketplace add <dein-github-name>/linkedin-agent-de
+/plugin install linkedin-agent-de --marketplace Joerg2108/linkedin-agent-de
+```
+
+Ältere Versionen in zwei Schritten:
+
+```
+/plugin marketplace add Joerg2108/linkedin-agent-de
 /plugin install linkedin-agent-de
 ```
 
@@ -63,7 +69,7 @@ die Floskel-Liste kannte nur englische Begriffe. Hier ist umgebaut worden:
 | --- | --- | --- |
 | Wörter zählen | `[A-Za-z]` - „für“ wird „f“ + „r“ | Umlaute und ß zählen |
 | Sätze trennen | jeder Punkt beendet einen Satz | z. B., bzw., ca., Nr., „am 3. März“ trennen nicht |
-| Floskeln | 113 englische | ~120 deutsche: Buzzwords, Denglisch, übersetzte KI-Phrasen |
+| Floskeln | 113 englische | 126 deutsche: Buzzwords, Denglisch, übersetzte KI-Phrasen |
 | Flexion | - | „nahtlosen“ wird „reibungslosen“, nicht „reibungslos“ |
 | Grammatik | ersetzt blind | Ersatz nur, wo er sicher passt, sonst nur markieren |
 | Satzanfang | „Zweifellos ist das gut“ wird zu „Ist das gut“ | wird markiert statt gelöscht (Verbzweitstellung) |
@@ -83,15 +89,17 @@ python3 detect.py beispiele/gut.txt
 Ergebnis mit den mitgelieferten (erfundenen) Beispielen:
 
 ```
-schlecht.txt   MENSCH-WERT  20,3  AUFFÄLLIG
-nach humanize  MENSCH-WERT  27,3  AUFFÄLLIG   (+7,0, die markierten Stellen sind noch nicht umgeschrieben)
-gut.txt        MENSCH-WERT  88,4  OK
+schlecht.txt     MENSCH-WERT  20,3  AUFFÄLLIG
+nach humanize    MENSCH-WERT  27,3  AUFFÄLLIG   (+7,0, die markierten Stellen sind noch nicht umgeschrieben)
+ki-typisch.txt   MENSCH-WERT  26,9  AUFFÄLLIG   (typischer ChatGPT-Post)
+sie-form.txt     MENSCH-WERT  70,8  PRÜFEN      (menschlich, aber sehr gleichmäßiger Satzrhythmus)
+gut.txt          MENSCH-WERT  88,4  OK
 ```
 
 Den Rest bis OK macht ein Mensch: Das Skript markiert die Satzmuster absichtlich
 nur, statt sie mit einer Regex zu verhunzen.
 
-**Tests:** `python3 -m unittest discover tests` (19 Tests, keine Abhängigkeiten).
+**Tests:** `python3 -m unittest discover tests` (25 Tests, keine Abhängigkeiten).
 
 ## Das Kleingedruckte, ehrlich
 
@@ -117,11 +125,11 @@ Skills weisen darauf hin, die Verantwortung bleibt bei dir.
 
 ```
 skills/li-post/hooks.json        21 Hook-Formeln: Vorlage, Beispiel, Einsatz, Falle
-skills/li-human/slop.json        das Lexikon: ~120 Floskeln, 17 unsichtbare Zeichenklassen, 14 Strukturmuster
+skills/li-human/slop.json        das Lexikon: 126 Floskeln, 17 unsichtbare Zeichenklassen, 15 Strukturmuster
 skills/li-human/gemeinsam.py     gemeinsame Textfunktionen (Wörter, Sätze, Abkürzungen, Flexion)
 skills/li-human/humanize.py      die drei Bereinigungsdurchgänge
 skills/li-human/detect.py        die fünf Prüfungen
-skills/li-human/beispiele/       ein schlechter und ein guter Beispieltext (erfunden)
+skills/li-human/beispiele/       vier Beispieltexte: schlecht, KI-typisch, Sie-Form, gut (alle erfunden)
 skills/li-profile/rubric.json    die 100-Punkte-Bewertung fürs Profil
 templates/voice.md               dein Stimmprofil. Zuerst ausfüllen.
 tests/test_humanizer.py          Tests für den Humanizer
