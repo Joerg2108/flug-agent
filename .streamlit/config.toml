@@ -6,3 +6,7 @@ textColor = "#FAFAFA"
 
 [server]
 headless = true
+
+[client]
+# Besucher sehen bei Fehlern keine Details mit Quellcode-Zeilen.
+showErrorDetails = false
